@@ -22,7 +22,7 @@ Plug 'junegunn/fzf.vim'
 
 " GUI Tweaks {{{
   Plug 'justinmk/vim-sneak'
-  " Plug 'machakann/vim-highlightedyank'     " Show highlighted area around what wvis yanked
+  Plug 'machakann/vim-highlightedyank'     " Show highlighted area around what wvis yanked
   Plug 'itchyny/lightline.vim'             " StatusBar
 "}}}
 
