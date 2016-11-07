@@ -1,6 +1,5 @@
 
-set rtp+=$HOME/.vim/
-"runtime! conf.d/*.vim
+" set rtp+=$HOME/.config/nvim
 
 " General {{{
   let g:mapleader = "\<Space>"
@@ -127,8 +126,8 @@ set rtp+=$HOME/.vim/
   nmap g* g*zz
   nmap g# g#zz
 
-  "Disable search highlighting
-  nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
+  "Disable & clear search highlighting
+  nnoremap <silent> <Esc><Esc> :nohlsearch<CR>:let @/ = ""<CR><Esc>
 
 " Switch between tabs
   nmap <leader>1 1gt
@@ -267,7 +266,7 @@ set rtp+=$HOME/.vim/
   imap <c-x><c-j> <plug>(fzf-complete-file-ag)
   imap <c-x><c-l> <plug>(fzf-complete-line)
 
-  "   Advanced customization using autoload functions
+  " Advanced customization using autoload functions
   inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 "    command! Plugs call fzf#run({
