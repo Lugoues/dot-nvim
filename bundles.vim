@@ -12,14 +12,12 @@ call plug#begin('~/.config/nvim/plugged')
 "Plug 'drmikehenry/vim-fixkey'      " maps alt to meta
 "Plug 'tpope/vim-eunuch'            " *nix Commands
 "Plug 'jceb/vim-orgmode'
-Plug 'kassio/neoterm' " Resuse existing terminal
-
-Plug 'justinmk/vim-dirvish'              " File Explorer
 
 " GUI Tweaks {{{
-  Plug 'justinmk/vim-sneak'
-  Plug 'machakann/vim-highlightedyank'     " Show highlighted area around what wvis yanked
-  Plug 'itchyny/lightline.vim'             " StatusBar
+  Plug 'kassio/neoterm'                " Resuse existing terminal
+  Plug 'justinmk/vim-dirvish'          " File Explorer
+  Plug 'machakann/vim-highlightedyank' " Show highlighted area around what wvis yanked
+  Plug 'itchyny/lightline.vim'         " StatusBar
 "}}}
 
 " Navigation {{{
@@ -37,6 +35,7 @@ Plug 'justinmk/vim-dirvish'              " File Explorer
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'          " Adds [s]urround verb
   Plug 'wincent/ferret'              " Add find/replace functionality
+  Plug 'justinmk/vim-sneak'          " alternative to f.
 "}}}
 
 " Git {{{
