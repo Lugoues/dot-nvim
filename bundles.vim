@@ -9,16 +9,11 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 "Plug 'drmikehenry/vim-fixkey'      " maps alt to meta
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
 "Plug 'tpope/vim-eunuch'            " *nix Commands
 "Plug 'jceb/vim-orgmode'
-"Plug 'kassio/neoterm'
-"Plug 'wincent/ferret'
+Plug 'kassio/neoterm' " Resuse existing terminal
 
-  Plug 'justinmk/vim-dirvish'              " File Explorer
-  Plug 'neomake/neomake'
-  Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'justinmk/vim-dirvish'              " File Explorer
 
 " GUI Tweaks {{{
   Plug 'justinmk/vim-sneak'
@@ -28,18 +23,19 @@ Plug 'junegunn/fzf.vim'
 
 " Navigation {{{
   Plug 'justinmk/vim-sneak'          " Adds a [s]neak motion
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf.vim'
 "}}}
 
 " Text Manipulation {{{
-  Plug 'bfredl/nvim-miniyank'
+  Plug 'bfredl/nvim-miniyank'        " killring-alike plugin
   Plug 'christoomey/vim-sort-motion' " Adds a [s]ort verb
   Plug 'junegunn/vim-after-object'   " Adds an [a]fter verb
   Plug 'junegunn/vim-easy-align'     " Adds [ga] verb to align
-  Plug 'maxbrunsfeld/vim-yankstack'
   Plug 'tpope/vim-commentary'        " Adds [gcc] comment line and [gc] comment verb
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'          " Adds [s]urround verb
-  Plug 'wincent/ferret'              " Add find/replace functioality
+  Plug 'wincent/ferret'              " Add find/replace functionality
 "}}}
 
 " Git {{{
@@ -62,8 +58,9 @@ Plug 'junegunn/fzf.vim'
 
 " Misc Languages {{{
   Plug 'scrooloose/syntastic'
-"  Plug 'hkupty/iron.nvim' " Multi-language repl support
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Async completion framework
+  Plug 'neomake/neomake'
+  Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
 "}}}
 
 " Clojure {{{
