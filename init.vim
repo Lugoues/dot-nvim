@@ -381,6 +381,16 @@
   nnoremap <C-l> <C-w>l
 "}}}
 
+" Git Diff Enhanced {{{
+  " started In Diff-Mode set diffexpr (plugin not loaded yet)
+  if &diff
+    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
+  endif
+"}}}
+
+" Deoplete {{{
+  let g:deoplete#enable_at_startup = 1
+"}}}
 
 " Local config {{{
   if filereadable(expand("~/.config/nvim/init.local.vim"))
