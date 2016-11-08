@@ -325,9 +325,10 @@
 
   nmap <silent> ]h :GitGutterNextHunk<CR>
   nmap <silent> [h :GitGutterPrevHunk<CR>
+  nmap <Leader>ha <Plug>GitGutterStageHunk
+  nmap <Leader>hr <Plug>GitGutterUndoHunk
+  nmap <Leader>hv <Plug>GitGutterPreviewHunk
 
-  nnoremap <silent> <Leader>gu :GitGutterRevertHunk<CR>
-  nnoremap <silent> <Leader>gp :GitGutterPreviewHunk<CR><c-w>j
   nnoremap cog :GitGutterToggle<CR>
   nnoremap <Leader>gt :GitGutterAll<CR>
 "}}}
