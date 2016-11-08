@@ -53,6 +53,8 @@
   " cursor a pipe in insert-mode, and a block in normal-mode
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+  set autoread "Reload Changes to file
+
   " Disable Ex Mode
   nnoremap Q <nop>
 
@@ -79,6 +81,7 @@
 
   " Cleanup Whitespaces
   autocmd BufWritePre * :%s/\s\+$//e
+  autocmd  CursorHold * checktime
 "}}
 
 
