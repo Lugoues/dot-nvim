@@ -295,20 +295,20 @@
 " Gita {{{
   nnoremap <silent> <leader>ga :Gita add<CR>
   nnoremap <silent> <leader>gB :Gita blame<CR>
-  nnoremap <silent> <leader>gb :Gita branch<CR>
+  " nnoremap <silent> <leader>gb :Gita branch<CR>
   nnoremap <silent> <leader>gM :Gita chaperone<CR>
-  nnoremap <silent> <leader>gc :Gita checkout<CR>
-  nnoremap <silent> <leader>gC :Gita commit<CR>
-  nnoremap <silent> <leader>gd :Gita diff<CR>
-  nnoremap <silent> <leader>gD :Gita diff-ls<CR>
-  nnoremap <silent> <leader>gg :Gita grep<CR>
-  nnoremap <silent> <leader>gl :Gita ls-files<CR>
-  nnoremap <silent> <leader>gL :Gita ls-tree<CR>
-  nnoremap <silent> <leader>gm :Gita merge<CR>
-  nnoremap <silent> <leader>gp :Gita patch<CR>
-  nnoremap <silent> <leader>gr :Gita rebase<CR>
-  nnoremap <silent> <leader>gR :Gita reset<CR>
-  nnoremap <silent> <leader>gs :Gita rm<CR>
+  " nnoremap <silent> <leader>gc :Gita checkout<CR>
+  " nnoremap <silent> <leader>gC :Gita commit<CR>
+  " nnoremap <silent> <leader>gd :Gita diff<CR>
+  " nnoremap <silent> <leader>gD :Gita diff-ls<CR>
+  " nnoremap <silent> <leader>gg :Gita grep<CR>
+  " nnoremap <silent> <leader>gl :Gita ls-files<CR>
+  " nnoremap <silent> <leader>gL :Gita ls-tree<CR>
+  " nnoremap <silent> <leader>gm :Gita merge<CR>
+  " nnoremap <silent> <leader>gp :Gita patch<CR>
+  " nnoremap <silent> <leader>gr :Gita rebase<CR>
+  " nnoremap <silent> <leader>gR :Gita reset<CR>
+  " nnoremap <silent> <leader>gs :Gita rm<CR>
   nnoremap <silent> <leader>gS :Gita show<CR>
   nnoremap <silent> <leader>gs :Gita status<CR>
 "}}}
