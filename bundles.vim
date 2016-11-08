@@ -16,7 +16,7 @@ call plug#begin('~/.config/nvim/plugged')
 " GUI Tweaks {{{
   Plug 'kassio/neoterm'                " Resuse existing terminal
   Plug 'justinmk/vim-dirvish'          " File Explorer
-  Plug 'machakann/vim-highlightedyank' " Show highlighted area around what wvis yanked
+  Plug 'machakann/vim-highlightedyank' " Show highlighted area around what was yanked
   Plug 'itchyny/lightline.vim'         " StatusBar
 "}}}
 
@@ -42,6 +42,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'lambdalisue/vim-gita'       " Git commands
   Plug 'airblade/vim-gitgutter'     " Add git gutter ala sublime
   Plug 'lambdalisue/vim-gista'      " Gist support
+  Plug 'chrisbra/vim-diff-enhanced' " Use git's paitence algorithm when diffing
 "}}}
 
 " Colors {{{
@@ -61,6 +62,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Async completion framework
   Plug 'neomake/neomake'
   Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
+  "Plug 'sheerun/vim-polyglot' "A collection of language packs for Vim.
 "}}}
 
 " Clojure {{{
@@ -70,7 +72,6 @@ call plug#begin('~/.config/nvim/plugged')
 "  Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
 "  Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure'] }
 "  Plug 'guns/vim-sexp', { 'for': ['clojure'] }
-"  Plug 'kassio/neoterm'
 "  Plug 'hkupty/acid.nvim', { 'for': ['clojure'] } "Not ready yet
 "  Plug 'kovisoft/paredit', { 'for': ['clojure'] }
 "}}}
