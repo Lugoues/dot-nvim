@@ -87,7 +87,10 @@
 
   " Cleanup Whitespaces
   autocmd BufWritePre * :%s/\s\+$//e
-  autocmd  CursorHold * checktime
+  autocmd CursorHold * checktime
+
+  " Enter insert mode when moving into term window
+  autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 "}}
 
 
