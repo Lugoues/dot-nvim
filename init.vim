@@ -55,6 +55,8 @@
 
   set autoread "Reload Changes to file
 
+  set updatetime=750 " More frequent updates for, e.g. signs.
+
   " Disable Ex Mode
   nnoremap Q <nop>
 
@@ -73,6 +75,10 @@
 
 
 " AutoCmd {{{
+  " set 'updatetime' to 15 seconds when in insert mode
+  au InsertEnter * let updaterestore=&updatetime | set updatetime=5000
+  au InsertLeave * let &updatetime=updaterestore
+
   " Reload vimrc on save
   augroup reload_vimrc
     autocmd!
