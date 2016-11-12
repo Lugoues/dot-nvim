@@ -26,3 +26,11 @@ pkg.unlink() {
   # Remove links in the home folder
   hooks.unlink
 }
+
+pkg.pull() {
+  helper git.pull
+
+  # Install Plugins
+  echo "Installing nvim Plugins..."
+  nvim +PlugInstall +qall --headless
+}
