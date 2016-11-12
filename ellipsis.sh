@@ -28,7 +28,7 @@ pkg.unlink() {
 }
 
 pkg.pull() {
-  helper git.pull
+  git.pull
 
   # Install Plugins
   echo "Installing nvim Plugins..."
