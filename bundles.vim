@@ -66,13 +66,14 @@ call plug#begin('~/.config/nvim/plugged')
 "}}}
 
 " Clojure {{{
+  Plug 'clojure-vim/async-clj-omni'
+  Plug 'hkupty/acid.nvim'
 "  Plug 'junegunn/rainbow_parentheses.vim', { 'for': ['clojure'] }
 "  Plug 'tpope/vim-fireplace, { 'for': ['clojure'] }'
 "  Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
 "  Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
 "  Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure'] }
 "  Plug 'guns/vim-sexp', { 'for': ['clojure'] }
-"  Plug 'hkupty/acid.nvim', { 'for': ['clojure'] } "Not ready yet
 "  Plug 'kovisoft/paredit', { 'for': ['clojure'] }
 "}}}
 

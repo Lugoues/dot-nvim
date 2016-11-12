@@ -404,6 +404,12 @@
   let g:deoplete#enable_at_startup = 1
 "}}}
 
+"Async Clj Omni {{{
+  let g:deoplete#keyword_patterns = {}
+  let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
+"}}}
+
+
 " Local config {{{
   if filereadable(expand("~/.config/nvim/init.local.vim"))
     source ~/.config/nvim/init.local.vim
