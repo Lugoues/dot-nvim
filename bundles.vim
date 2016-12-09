@@ -80,7 +80,8 @@ Plug 'jceb/vim-orgmode'
 
 " Python {{{
   Plug 'hdima/python-syntax'
-" }}}
+  Plug 'zchee/deoplete-jedi' " Autocomplete
+"}}}
 
 
 " Load Local Plugins {{{
