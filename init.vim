@@ -4,7 +4,7 @@
 " General {{{
   let g:mapleader = "\<Space>"
 
-  set clipboard=
+  set clipboard=unnamed
   set number         " show line numbers
   set relativenumber " use relative lines numbering by default
   set noswapfile     " disable creating of *.swp files
@@ -42,7 +42,7 @@
   set diffopt=iwhite " Ignore whitepsace in diffs
   set cursorline " Highlight current line
 
-  filetype plugin indent on
+  filetype plugin indent on  " Enable plugins
   set hlsearch       " Highlight Search matches
   set showmatch
 
@@ -167,7 +167,6 @@
   " Use jk for esc
   inoremap jk <Esc>
 "}}}
-
 
 " LightLine {{{
     let g:lightline = {'colorscheme': 'Tomorrow_Night'}
@@ -409,6 +408,11 @@
   let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
 "}}}
 
+" Easy CLip {{{
+  let g:EasyClipShareYanks = 1 " Persistent yank history
+  let g:EasyClipShareYanksDirectory = "~/.config/nvim/"
+  let g:EasyClipShareYanksFile = "clipboard"
+"}}}
 
 " Local config {{{
   if filereadable(expand("~/.config/nvim/init.local.vim"))

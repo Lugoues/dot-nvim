@@ -11,7 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 "Plug 'drmikehenry/vim-fixkey'      " maps alt to meta
 "Plug 'tpope/vim-eunuch'            " *nix Commands
-"Plug 'jceb/vim-orgmode'
+Plug 'jceb/vim-orgmode'
 
 " GUI Tweaks {{{
   Plug 'kassio/neoterm'                " Resuse existing terminal
@@ -36,6 +36,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-surround'          " Adds [s]urround verb
   Plug 'wincent/ferret'              " Add find/replace functionality
   Plug 'justinmk/vim-sneak'          " alternative to f.
+  Plug 'svermeulen/vim-easyclip'     " Better Clipboard
 "}}}
 
 " Git {{{
