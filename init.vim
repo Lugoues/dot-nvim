@@ -4,9 +4,11 @@
 " General {{{
   let g:mapleader = "\<Space>"
 
-"  if system("uname -s") == "Darwin"
+  " Enable clipboard if in X11 mode - X11Forwarding
+  if exists('$DISPLAY') || exists( 'pbcopy')
     set clipboard=unnamedplus
-"  endif
+  endif
+
   set number         " show line numbers
   set relativenumber " use relative lines numbering by default
   set noswapfile     " disable creating of *.swp files
@@ -348,9 +350,9 @@
 
 
 " Miniyank {{{
-  map <leader>n <Plug>(miniyank-cycle)
-  map <leader>p <Plug>(miniyank-startput)
-  map <leader>P <Plug>(miniyank-startPut)
+  " map <leader>n <Plug>(miniyank-cycle)
+  " map <leader>p <Plug>(miniyank-startput)
+  " map <leader>P <Plug>(miniyank-startPut)
 "}}}
 
 
@@ -404,7 +406,7 @@
 " Deoplete {{{
   let g:deoplete#enable_at_startup = 1
 
-  " deoplete tab-complete
+  " deoplete tab-complete & cycle
   inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 "}}}
 
