@@ -18,6 +18,8 @@ Plug 'jceb/vim-orgmode'
   Plug 'justinmk/vim-dirvish'          " File Explorer
   Plug 'machakann/vim-highlightedyank' " Show highlighted area around what was yanked
   Plug 'itchyny/lightline.vim'         " StatusBar
+  Plug 'nathanaelkane/vim-indent-guides' " visually display indents
+  Plug 'kshenoy/vim-signature'           " display marks in gutter
 "}}}
 
 " Navigation {{{

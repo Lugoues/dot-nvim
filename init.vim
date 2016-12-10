@@ -4,7 +4,9 @@
 " General {{{
   let g:mapleader = "\<Space>"
 
-  set clipboard=unnamed
+"  if system("uname -s") == "Darwin"
+    set clipboard=unnamedplus
+"  endif
   set number         " show line numbers
   set relativenumber " use relative lines numbering by default
   set noswapfile     " disable creating of *.swp files
@@ -415,6 +417,13 @@
   let g:EasyClipShareYanks = 1 " Persistent yank history
   let g:EasyClipShareYanksDirectory = "~/.config/nvim/"
   let g:EasyClipShareYanksFile = "clipboard"
+"}}}
+
+" Indent Guides {{{
+  let g:indent_guides_start_level = 2
+  let g:indent_guides_guide_size = 1
+  hi IndentGuidesOdd  ctermbg=black
+  hi IndentGuidesEven ctermbg=darkgrey
 "}}}
 
 " Local config {{{
