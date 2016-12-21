@@ -10,9 +10,13 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 "Plug 'drmikehenry/vim-fixkey'      " maps alt to meta
-"Plug 'tpope/vim-eunuch'            " *nix Commands
 Plug 'jceb/vim-orgmode'
 
+" Misc Commands {{{
+  Plug 'tpope/vim-eunuch'            " *nix Commands
+  Plug 'duggiefresh/vim-easydir'     " Create directories on save
+"}}}
+"
 " GUI Tweaks {{{
   Plug 'kassio/neoterm'                " Resuse existing terminal
   Plug 'justinmk/vim-dirvish'          " File Explorer
