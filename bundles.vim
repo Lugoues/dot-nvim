@@ -89,6 +89,10 @@ Plug 'jceb/vim-orgmode'
   Plug 'zchee/deoplete-jedi' " Autocomplete
 "}}}
 
+" Rust {{{
+  Plug 'rust-lang/rust.vim'
+  Plug 'sebastianmarkow/deoplete-rust'
+"}}}
 
 " Load Local Plugins {{{
   if filereadable(expand("~/.config/nvim/vimrc.bundles.local"))
