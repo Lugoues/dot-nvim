@@ -24,6 +24,7 @@ pkg.link() {
   # Install Plugins
   echo "Installing nvim Plugins..."
   nvim +PlugInstall +qall --headless
+  nvim +PlugClean +qall --headless
 }
 
 pkg.unlink() {
