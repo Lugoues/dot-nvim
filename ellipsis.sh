@@ -9,18 +9,6 @@ git.pull-rebase() {
     git pull --rebase
 }
 
-git.remote_branch() {
-  git rev-parse --abbrev-ref "@{u}"
-}
-
-git.behind() {
-  git rev-list "HEAD...$(git.remote_branch)" --count
-}
-
-git.is_behind() {
-  [ "$(git.behind)" -gt 0 ]
-}
-
 pkg.install() {
   if ! utils.cmd_exists nvim; then
     log.fail "Unmet dependency 'nvim'"
