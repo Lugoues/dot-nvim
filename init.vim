@@ -252,6 +252,8 @@
     let g:fzf_nvim_statusline = 1 " disable statusline overwritin
   endif
 
+  let g:ackprg = 'ag --vimgrep'
+
   " File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
   let g:fzf_files_options = '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
@@ -346,13 +348,6 @@
 
   nnoremap cog :GitGutterToggle<CR>
   nnoremap <Leader>gt :GitGutterAll<CR>
-"}}}
-
-
-" Miniyank {{{
-  " map <leader>n <Plug>(miniyank-cycle)
-  " map <leader>p <Plug>(miniyank-startput)
-  " map <leader>P <Plug>(miniyank-startPut)
 "}}}
 
 

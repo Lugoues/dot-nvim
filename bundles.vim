@@ -33,7 +33,6 @@ Plug 'jceb/vim-orgmode'
 "}}}
 
 " Text Manipulation {{{
-  Plug 'bfredl/nvim-miniyank'        " killring-alike plugin
   Plug 'christoomey/vim-sort-motion' " Adds a [s]ort verb
   Plug 'junegunn/vim-after-object'   " Adds an [a]fter verb
   Plug 'junegunn/vim-easy-align'     " Adds [ga] verb to align
