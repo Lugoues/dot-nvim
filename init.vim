@@ -414,6 +414,9 @@
   let g:EasyClipShareYanks = 1 " Persistent yank history
   let g:EasyClipShareYanksDirectory = "~/.config/nvim/"
   let g:EasyClipShareYanksFile = "clipboard"
+
+  "gm to set mark
+  nnoremap gm m
 "}}}
 
 " Indent Guides {{{
