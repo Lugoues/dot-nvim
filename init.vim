@@ -9,6 +9,10 @@
     set clipboard=unnamedplus
   endif
 
+  if has('nvim')
+    set inccommand=nosplit
+  endif
+
   set number         " show line numbers
   set relativenumber " use relative lines numbering by default
   set noswapfile     " disable creating of *.swp files
