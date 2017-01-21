@@ -256,13 +256,16 @@
     let g:fzf_nvim_statusline = 1 " disable statusline overwritin
   endif
 
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'rg --vimgrep '
 
   " File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
   let g:fzf_files_options = '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
   " Show hidden files and ignore errors
-  let $FZF_DEFAULT_COMMAND = 'ag --silent --hidden --ignore .git -l -g ""'
+  " let $FZF_DEFAULT_COMMAND = 'ag --silent --hidden --ignore .git -l -g ""'
+  let $FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+  command! -bang -nargs=* Rg call fzf#vim#grep('rg --vimgrep --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" '.shellescape(<q-args>), 1, <bang>0)
 
   nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
   nnoremap <silent> <Leader>AG       :Ag <C-R><C-A><CR>
