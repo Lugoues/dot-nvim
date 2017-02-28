@@ -13,6 +13,7 @@
     set inccommand=nosplit
   endif
 
+  set termguicolors
   set number         " show line numbers
   set relativenumber " use relative lines numbering by default
   set noswapfile     " disable creating of *.swp files
@@ -174,6 +175,12 @@
 
   " Use jk for esc
   inoremap jk <Esc>
+
+  "mac
+  nnoremap <silent> <leader>cfn :let @*=expand("%").":".line(".")<CR>
+
+  "linux
+  "nnoremap <leader>cfn :let @+=expand("%").":".line(".")<CR>
 "}}}
 
 " LightLine {{{
@@ -257,6 +264,7 @@
   endif
 
   let g:ackprg = 'rg --vimgrep '
+  let g:grepprg = 'rg --vimgrep'
 
   " File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
   let g:fzf_files_options = '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
@@ -265,7 +273,7 @@
   " let $FZF_DEFAULT_COMMAND = 'ag --silent --hidden --ignore .git -l -g ""'
   let $FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-  command! -bang -nargs=* Rg call fzf#vim#grep('rg --vimgrep --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" '.shellescape(<q-args>), 1, <bang>0)
+  command! -bang -nargs=* Rg call fzf#vim#grep('rg --vimgrep --line-number --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always" --glob "!.git/*" '.shellescape(<q-args>), 1, <bang>0)
 
   nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
   nnoremap <silent> <Leader>AG       :Ag <C-R><C-A><CR>
@@ -444,13 +452,21 @@
 
   command! FZFYank call fzf#run({ 'source': <sid>yank_list(), 'sink': function('<sid>yank_handler'), 'options': '-m', 'down': 12 })
   nnoremap <silent> <Leader>y        :FZFYank<CR>
+
 "}}}
 
 " Indent Guides {{{
-  let g:indent_guides_start_level = 2
-  let g:indent_guides_guide_size = 1
-  hi IndentGuidesOdd  ctermbg=black
-  hi IndentGuidesEven ctermbg=darkgrey
+  let g:indentLine_enabled = 0
+  " let g:indentLine_setColors = 0
+  " let g:indentLine_color_gui = '#282a2e'
+  " let g:indentLine_color_term = 100
+  " let g:indent_guides_start_level = 2
+  " let g:indent_guides_guide_size = 1
+  " let g:indent_guides_auto_colors = 0
+  " " hi IndentGuidesOdd  ctermbg=black
+  " hi IndentGuidesEven ctermbg=darkgrey
+  " " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+  " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 "}}}
 
 " Local config {{{

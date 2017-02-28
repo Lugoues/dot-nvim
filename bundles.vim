@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 "Plug 'drmikehenry/vim-fixkey'      " maps alt to meta
 Plug 'jceb/vim-orgmode'
+Plug 'roxma/python-support.nvim'
 
 " Misc Commands {{{
   Plug 'tpope/vim-eunuch'            " *nix Commands
@@ -65,10 +66,14 @@ Plug 'jceb/vim-orgmode'
 
 " Misc Languages {{{
   Plug 'scrooloose/syntastic'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Async completion framework
   Plug 'neomake/neomake'
   Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'pearofducks/ansible-vim'
   "Plug 'sheerun/vim-polyglot' "A collection of language packs for Vim.
+  Plug 'roxma/nvim-completion-manager'
+  if !has('nvim')
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
 "}}}
 
 " Clojure {{{
@@ -85,12 +90,10 @@ Plug 'jceb/vim-orgmode'
 
 " Python {{{
   Plug 'hdima/python-syntax'
-  Plug 'zchee/deoplete-jedi' " Autocomplete
 "}}}
 
 " Rust {{{
   Plug 'rust-lang/rust.vim'
-  Plug 'sebastianmarkow/deoplete-rust'
 "}}}
 
 " Load Local Plugins {{{
