@@ -11,7 +11,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 "Plug 'drmikehenry/vim-fixkey'      " maps alt to meta
 Plug 'jceb/vim-orgmode'
-Plug 'roxma/python-support.nvim'
 
 " Misc Commands {{{
   Plug 'tpope/vim-eunuch'            " *nix Commands
