@@ -96,8 +96,7 @@ pkg.pull() {
 
     # Install Plugins
     echo "Installing nvim Plugins..."
-    nvim +PlugInstall +qall --headless
-
+    nvim +PlugInstall +UpdateRemotePlugins +qall --headless
 
   # else
     # msg.bold "$PKG_NAME up-to-date."
