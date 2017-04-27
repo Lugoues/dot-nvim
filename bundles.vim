@@ -77,7 +77,7 @@ Plug 'jceb/vim-orgmode'
 
 " Clojure {{{
   Plug 'clojure-vim/async-clj-omni'
-  Plug 'hkupty/acid.nvim'
+  " Plug 'hkupty/acid.nvim'
 "  Plug 'junegunn/rainbow_parentheses.vim', { 'for': ['clojure'] }
 "  Plug 'tpope/vim-fireplace, { 'for': ['clojure'] }'
 "  Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
