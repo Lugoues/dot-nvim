@@ -11,6 +11,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 "Plug 'drmikehenry/vim-fixkey'      " maps alt to meta
 Plug 'jceb/vim-orgmode'
+" Plug 'fehiepsi/slimux'
+" Plug 'jpalardy/vim-slime'
+Plug 'bosr/slimux', { 'branch': 'hack' }
+
 
 " Misc Commands {{{
   Plug 'tpope/vim-eunuch'            " *nix Commands

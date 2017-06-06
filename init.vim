@@ -61,7 +61,7 @@ source ~/.config/nvim/python.local.vim
   set splitright
 
   " cursor a pipe in insert-mode, and a block in normal-mode
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  " let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
   set autoread "Reload Changes to file
 
@@ -114,6 +114,8 @@ source ~/.config/nvim/python.local.vim
   set shiftround    " round indent to multiple of 'shiftwidth' (for << and >>)
   set autoindent
   set smartindent
+  set smarttab
+  set expandtab
 "}}}
 
 
@@ -125,8 +127,12 @@ source ~/.config/nvim/python.local.vim
 
 
 " Colors & Highlighting {{{
-  colorscheme Tomorrow-Night " silence errors so we don't bomb out
+  colorscheme base16-tomorrow-night " silence errors so we don't bomb out
+  " colorscheme Tomorrow-Night " silence errors so we don't bomb out
   set guifont=Operator\ Mono\ Book:h18
+
+  " Hide EOB lines ~
+  hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 
   " Italics or Operator font
   highlight Comment gui=italic
@@ -469,6 +475,24 @@ source ~/.config/nvim/python.local.vim
   " " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 "}}}
+
+" slimux {{{
+" let g:slime_target = "tmux"
+" let g:slime_python_ipython = 1
+
+" xmap <Leader>rs <Plug>SlimeRegionSend
+" nmap <Leader>rs <Plug>SlimeParagraphSend
+
+let g:slimux_python_ipython = 1
+map  <Leader>rs :SlimuxREPLSendLine<CR>
+vmap <Leader>rs :SlimuxREPLSendSelection<CR>
+map  <Leader>rb :SlimuxREPLSendBuffer<CR>
+map  <Leader>ra :SlimuxShellLast<CR>
+map  <Leader>rk :SlimuxSendKeysLast<CR>
+
+
+"}}}
+
 
 " Local config {{{
   if filereadable(expand("~/.config/nvim/init.local.vim"))
