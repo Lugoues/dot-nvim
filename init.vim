@@ -1,7 +1,9 @@
 
 " set rtp+=$HOME/.config/nvim
 
-source ~/.config/nvim/python.local.vim
+" source ~/.config/nvim/python.local.vim
+let g:python_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim2/bin/python"
+let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/bin/python"
 " General {{{
   let g:mapleader = "\<Space>"
 

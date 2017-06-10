@@ -18,15 +18,17 @@ setup_python() {
 
   echo "Setting up python"
   eval "$(pyenv init -)"
+
   pyenv install 2.7.11 --skip-existing
-  pyenv install 3.4.4 --skip-existing
-  pyenv virtualenv 2.7.11 neovim2
-  pyenv virtualenv 3.4.4 neovim3
+  [[ !  $(pyenv virtualenvs --bare) =~ "neovim2" ]] && pyenv virtualenv 2.7.11 neovim2
 
   pyenv activate neovim2
   pip install $python2_req
   python2_path=$(pyenv which python)
   pyenv deactivate
+
+  pyenv install 3.6.1 --skip-existing
+  [[ !  $(pyenv virtualenvs --bare) =~ "neovim3" ]] && pyenv virtualenv 3.6.1 neovim3
 
   pyenv activate neovim3
   pip install $python3_req
@@ -76,7 +78,7 @@ pkg.link() {
   # Install Plugins
   echo "Installing nvim Plugins..."
   nvim +PlugInstall +qall --headless
-  nvim +PlugClean +qall --headless
+  nvim +PlugClean! +qall --headless
 }
 
 pkg.unlink() {
