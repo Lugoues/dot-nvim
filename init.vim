@@ -1,6 +1,10 @@
 " set rtp+=$HOME/.config/nvim
+ " Python Path Config {{{
+  if filereadable(expand('~/.config/nvim/python.local.vim'))
+    source ~/.config/nvim/python.local.vim
+    endif
+" }}}
 
-source ~/.config/nvim/python.local.vim
 " General {{{
   let g:mapleader = "\<Space>"
 
