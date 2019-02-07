@@ -1,3 +1,4 @@
 plugged/*
 autoload/*
 clipboard
+python.local.vim

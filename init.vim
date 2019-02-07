@@ -1,9 +1,6 @@
-
 " set rtp+=$HOME/.config/nvim
 
-" source ~/.config/nvim/python.local.vim
-let g:python_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim2/bin/python"
-let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/bin/python"
+source ~/.config/nvim/python.local.vim
 " General {{{
   let g:mapleader = "\<Space>"
 
@@ -34,12 +31,16 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
   " '100 remember 100 previously edited files
   set viminfo=!,h,f1,'100
 
-  set foldmethod=manual       " use manual folding
+  " set foldmethod=manual       " use manual folding
+  set foldmethod=indent
+  set nofoldenable
   set diffopt=filler,vertical " default behavior for diff
 
   " ignore pattern for wildmenu
+  set wildmenu
+  set wildmode=full
   set wildignore+=*.a,*.o,*.pyc,*~,*.swp,*.tmp
-  set wildmode=list:longest,full
+" set wildmode=list:longest,full
 
   set list " show hidden characters
   set listchars=tab:»·,trail:·,nbsp:· "Display extra whitespaces
@@ -72,6 +73,9 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
   " Disable Ex Mode
   nnoremap Q <nop>
 
+  set synmaxcol=200   " limit syntax highlighting to first 200 columns
+  set infercase       " allow smart completions
+
   " Switch syntax highlighting on, when the terminal has colors
   " Also switch on highlighting the last used search pattern.
   if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
@@ -80,7 +84,7 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
  "}}}
 
 " Load plugins {{{
-  if filereadable(expand("~/.config/nvim/bundles.vim"))
+  if filereadable(expand('~/.config/nvim/bundles.vim'))
     source ~/.config/nvim/bundles.vim
   endif
 "}}}
@@ -122,7 +126,7 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
 
 
 " Search {{{
-  set ignorecase " ignore case of letters
+  " set ignorecase " ignore case of letters
   set smartcase  " override the 'ignorecase' when there is uppercase letters
   set gdefault   " when on, the :substitute flag 'g' is default on
 "}}}
@@ -148,7 +152,13 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
   " Quick Save
   nnoremap <leader>w :w<CR>
 
-  " Keep search results at the center of screen
+  "Easy most-recent-buffer switching
+  nnoremap <silent> <Tab> :b#<CR>
+
+" Easy next-window switching
+  nnoremap ` <C-w>w
+
+" Keep search results at the center of screen
   nmap n nzz
   nmap N Nzz
   nmap * *zz
@@ -211,7 +221,8 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
             \            [ 'readonly', 'absolutepath' ]],
             \ 'right': [ [ 'lineinfo', 'percent' ],
             \            [ 'fileencoding' ],
-            \            [ 'git_branch', 'git_gutter' ]]
+            \            [ 'git_branch', 'git_gutter' ],
+            \            [ 'linter_warnings', 'linter_errors', 'linter_ok']]
     \ }
 
     let g:lightline.inactive = {
@@ -229,6 +240,9 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
       \ 'git_traffic': 'LightLineGitaTraffic',
       \ 'git_status':  'LightLineGitaStatus',
       \ 'git_gutter': 'LightLineGitGutter',
+    \   'linter_warnings': 'LightlineLinterWarnings',
+    \   'linter_errors': 'LightlineLinterErrors',
+    \   'linter_ok': 'LightlineLinterOK'
     \ }
 
     function! LightLineGitaBranch()
@@ -263,6 +277,30 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
       endfor
       return join(ret, ' ')
     endfunction
+
+    function! LightlineLinterWarnings() abort
+      let l:counts = ale#statusline#Count(bufnr(''))
+      let l:all_errors = l:counts.error + l:counts.style_error
+      let l:all_non_errors = l:counts.total - l:all_errors
+      return l:counts.total == 0 ? '' : printf('%d ▲', all_non_errors)
+    endfunction
+
+    function! LightlineLinterErrors() abort
+      let l:counts = ale#statusline#Count(bufnr(''))
+      let l:all_errors = l:counts.error + l:counts.style_error
+      let l:all_non_errors = l:counts.total - l:all_errors
+      return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+    endfunction
+
+    function! LightlineLinterOK() abort
+      let l:counts = ale#statusline#Count(bufnr(''))
+      let l:all_errors = l:counts.error + l:counts.style_error
+      let l:all_non_errors = l:counts.total - l:all_errors
+      return l:counts.total == 0 ? '✓' : ''
+    endfunction
+
+    autocmd User ALELint call lightline#update()
+
 "}}}
 
 
@@ -287,7 +325,7 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
   nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
   nnoremap <silent> <Leader>AG       :Ag <C-R><C-A><CR>
   xnoremap <silent> <Leader>ag       y:Ag <C-R>"<CR>
-  nnoremap <silent> <Leader>fb        :Buffers<CR>
+  " nnoremap <silent> <Leader>fb        :Buffers<CR>
   nnoremap <silent> <Leader><Enter>   :Buffers<CR>
   nnoremap <silent> <Leader>fc        :Colors<CR>
   nnoremap <silent> <Leader>ff        :Files<CR>
@@ -334,10 +372,10 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
 
 
 " Gita {{{
-  nnoremap <silent> <leader>ga :Gita add<CR>
-  nnoremap <silent> <leader>gB :Gita blame<CR>
+  " nnoremap <silent> <leader>ga :Gita add<CR>
+  " nnoremap <silent> <leader>gB :Gita blame<CR>
   " nnoremap <silent> <leader>gb :Gita branch<CR>
-  nnoremap <silent> <leader>gM :Gita chaperone<CR>
+  " nnoremap <silent> <leader>gM :Gita chaperone<CR>
   " nnoremap <silent> <leader>gc :Gita checkout<CR>
   " nnoremap <silent> <leader>gC :Gita commit<CR>
   " nnoremap <silent> <leader>gd :Gita diff<CR>
@@ -350,13 +388,14 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
   " nnoremap <silent> <leader>gr :Gita rebase<CR>
   " nnoremap <silent> <leader>gR :Gita reset<CR>
   " nnoremap <silent> <leader>gs :Gita rm<CR>
-  nnoremap <silent> <leader>gS :Gita show<CR>
-  nnoremap <silent> <leader>gs :Gita status<CR>
+  " nnoremap <silent> <leader>gS :Gita show<CR>
+  " nnoremap <silent> <leader>gs :Gita status<CR>
 "}}}
 
 
 " Git Gutter {{{
-  let g:gitgutter_sign_column_always=1
+  " let g:gitgutter_sign_column_always=1
+  set signcolumn=yes
   let g:gitgutter_map_keys = 0
   let g:gitgutter_max_signs = 200
   let g:gitgutter_realtime = 1
@@ -376,8 +415,8 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
 
 
 " NeoTerm {{{
-  nnoremap <Leader>cx           :TREPLSendLine
-  nnoremap <Leader>cX           :TREPLSendSelection
+  " nnoremap <Leader>cx           :TREPLSendLine
+  " nnoremap <Leader>cX           :TREPLSendSelection
 "}}}
 
 
@@ -398,6 +437,7 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
 " Sneak {{{
   nmap s <Plug>Sneak_s
   nmap S <Plug>Sneak_S
+  " let g:sneak#label = 1
 "}}}
 
 
@@ -436,11 +476,11 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
 
 " Easy CLip {{{
   let g:EasyClipShareYanks = 1 " Persistent yank history
-  let g:EasyClipShareYanksDirectory = "~/.config/nvim/"
-  let g:EasyClipShareYanksFile = "clipboard"
+  let g:EasyClipShareYanksDirectory = '~/.config/nvim/'
+  let g:EasyClipShareYanksFile = 'clipboard'
 
   "gm to set mark
-  nnoremap gm m
+  " nnoremap gm m
 
   " Integreate with FZF
   function! s:yank_list()
@@ -452,7 +492,7 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
 
   function! s:yank_handler(reg)
     if empty(a:reg)
-      echo "aborted register paste"
+      echo 'aborted register paste'
     else
       let token = split(a:reg, ' ')
       execute 'Paste' . token[0]
@@ -478,22 +518,89 @@ let g:python3_host_prog = "/Users/pbrunner/.local/share/pyenv/versions/neovim3/b
   " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 "}}}
 
+" Signature {{{
+let g:SignatureMap = {
+\ 'Leader'             :  "M",
+\ 'PlaceNextMark'      :  "M,",
+\ 'ToggleMarkAtLine'   :  "M.",
+\ 'PurgeMarksAtLine'   :  "M-",
+\ 'DeleteMark'         :  "dM",
+\ 'PurgeMarks'         :  "M<Space>",
+\ 'PurgeMarkers'       :  "M<BS>",
+\ 'GotoNextLineAlpha'  :  "']",
+\ 'GotoPrevLineAlpha'  :  "'[",
+\ 'GotoNextSpotAlpha'  :  "`]",
+\ 'GotoPrevSpotAlpha'  :  "`[",
+\ 'GotoNextLineByPos'  :  "]'",
+\ 'GotoPrevLineByPos'  :  "['",
+\ 'GotoNextSpotByPos'  :  "]`",
+\ 'GotoPrevSpotByPos'  :  "[`",
+\ 'GotoNextMarker'     :  "]-",
+\ 'GotoPrevMarker'     :  "[-",
+\ 'GotoNextMarkerAny'  :  "]=",
+\ 'GotoPrevMarkerAny'  :  "[=",
+\ 'ListBufferMarks'    :  "M/",
+\ 'ListBufferMarkers'  :  "M?"
+\ }
+"}}}
+
+" Ale {{{
+  " let g:ale_lint_delay = 100
+  " let g:ale_open_list = 0
+  let g:ale_statusline_format = [ '✘ %d', '∆ %d', '' ]
+  let g:ale_sign_error = '•' "'✖' "'✗' "'✘' ✖
+  let g:ale_sign_warning = '•' "'▲' "'➤' " '∆'
+  let g:ale_sign_info = '•' "'➤'
+  let g:ale_echo_msg_error_str = 'E'
+  let g:ale_echo_msg_warning_str = 'W'
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+  " let g:ale_linters =
+  " \ { 'sugarss': ['stylelint'] }
+  " nnoremap <silent> <Leader>] <Plug>(ale_previous_wrap)
+  " nnoremap <silent> <Leader>[ <Plug>(ale_next_wrap)
+  " augroup AleLint
+  "   autocmd!
+  "   autocmd User ALELint lightline#update()
+  " augroup END
+  highlight clear ALEErrorSign
+  highlight clear ALEWarningSign
+  " highlight link ALEErrorSign error
+  " call s:hi('Error'    , 160 , s:bg , 'bold' , 'bold')
+  " call s:hi('ErrorMsg' , 196 , s:bg , 'bold' , 'bold')
+  " hi ALEError        guifg=#e0211d guibg=NONE
+  " hi ALEWarning      guifg=#dc752f guibg=NONE
+" call <sid>hi("GitGutterAdd",     s:gui0B, s:gui01, s:cterm0B, s:cterm01, "", "")
+
+  " hi link ALEErrorSign    ALEError
+  " hi link ALEWarningSign  ALEWarning
+" call <sid>hi("ALEErrorSign",     s:gui0B, s:gui01, s:cterm0B, s:cterm01, "", "")
+  highlight link ALEErrorSign GitGutterDelete
+  highlight link ALEWarningSign GitGutterAdd
+
+" }}}
+
+
 " slimux {{{
-" let g:slime_target = "tmux"
+" let g:slime_target = "neovim"
 " let g:slime_python_ipython = 1
 
 " xmap <Leader>rs <Plug>SlimeRegionSend
 " nmap <Leader>rs <Plug>SlimeParagraphSend
 
-let g:slimux_python_ipython = 1
-map  <Leader>rs :SlimuxREPLSendLine<CR>
-vmap <Leader>rs :SlimuxREPLSendSelection<CR>
-map  <Leader>rb :SlimuxREPLSendBuffer<CR>
-map  <Leader>ra :SlimuxShellLast<CR>
-map  <Leader>rk :SlimuxSendKeysLast<CR>
+" let g:slimux_python_ipython = 1
+" map  <Leader>rs :SlimuxREPLSendLine<CR>
+" vmap <Leader>rs :SlimuxREPLSendSelection<CR>
+" map  <Leader>rb :SlimuxREPLSendBuffer<CR>
+" map  <Leader>ra :SlimuxShellLast<CR>
+" map  <Leader>rk :SlimuxSendKeysLast<CR>
 
 
 "}}}
+
+autocmd FileType terraform setlocal commentstring=#%s
+
+
+autocmd FileType python BracelessEnable +indent +fold
 
 
 " Local config {{{

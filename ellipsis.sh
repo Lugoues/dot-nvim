@@ -14,7 +14,19 @@ git.pull-rebase() {
     git pull --rebase
 }
 
-setup_python() {
+
+_check_requires() {
+  echo "$(tput setaf 2)Checking dependencies...$(tput sgr0)"
+  for i in "${requires[@]}"
+  do
+    if ! utils.cmd_exists $i; then
+      log.fail "Unmet dependency '$i'"
+      return 1
+    fi
+  done
+}
+
+_setup_python() {
 
   echo "Setting up python"
   eval "$(pyenv init -)"
@@ -43,7 +55,7 @@ EOF
 }
 
 
-setup_ruby() {
+_setup_ruby() {
   echo "Setting up Ruby"
 
   # eval "$(rbenv init -)"
@@ -58,16 +70,9 @@ setup_ruby() {
 }
 
 pkg.install() {
-  for i in "${arrayName[@]}"
-  do
-    if ! utils.cmd_exists $i; then
-      log.fail "Unmet dependency '$i'"
-      return 1
-    fi
-  done
-
-  setup_python
-  setup_ruby
+  _check_requires
+  _setup_python
+  _setup_ruby
 }
 
 pkg.link() {
