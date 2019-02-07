@@ -70,7 +70,7 @@ _setup_ruby() {
 }
 
 pkg.install() {
-  _check_requires
+  _check_requires || exit $?
   _setup_python
   _setup_ruby
 }
