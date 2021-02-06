@@ -1,4 +1,6 @@
 " BUNDLE
+let g:goyo_width = "50%"
+let g:goyo_width = "50%"
 " Automatically download vim-plug if it doesn't exist
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -17,6 +19,10 @@ Plug 'jceb/vim-orgmode'
 Plug 'yuttie/comfortable-motion.vim'     " physics-based smooth scrolling
 Plug 'kopischke/vim-fetch'
 Plug 'darfink/vim-plist'                 " Edit osx Plist files
+Plug 'junegunn/goyo.vim'   " Distraction free editing
+Plug 'reedes/vim-pencil'
+Plug 'junegunn/limelight.vim'
+Plug 'tpope/vim-markdown'
 
 " Misc Commands {{{
   Plug 'tpope/vim-eunuch'                " *nix Commands
@@ -58,9 +64,10 @@ Plug 'darfink/vim-plist'                 " Edit osx Plist files
 "}}}
 
 " Colors {{{
-  Plug 'chriskempson/base16-vim'
-  Plug 'chriskempson/vim-tomorrow-theme'
-  Plug 'tomasr/molokai'
+  " Plug 'chriskempson/base16-vim'
+  " Plug 'chriskempson/vim-tomorrow-theme'
+  " Plug 'tomasr/molokai'
+  Plug 'arcticicestudio/nord-vim'
 "}}}
 
 "Syntax {{{
@@ -75,10 +82,12 @@ Plug 'darfink/vim-plist'                 " Edit osx Plist files
   Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'pearofducks/ansible-vim'
   Plug 'sheerun/vim-polyglot' "A collection of language packs for Vim.
-  Plug 'roxma/nvim-completion-manager'
-  if !has('nvim')
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
+  "Plug 'roxma/nvim-completion-manager'
+  Plug 'ncm2/ncm2'
+  Plug 'roxma/nvim-yarp'
+  " if !has('nvim')
+  "   Plug 'roxma/vim-hug-neovim-rpc'
+  " endif
 "}}}
 
 " Clojure {{{

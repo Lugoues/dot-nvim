@@ -137,12 +137,38 @@
 
 
 " Colors & Highlighting {{{
-  colorscheme base16-tomorrow-night " silence errors so we don't bomb out
+  augroup nord-theme-overrides
+    autocmd!
+    " Use 'nord7' as foreground color for Vim comment titles.
+    " autocmd ColorScheme nord highlight vimCommentTitle ctermbg=#212121 guibg=#212121
+    autocmd ColorScheme nord highlight Normal cterm=NONE ctermbg=17 gui=NONE guibg=#212121
+    autocmd ColorScheme nord highlight NonText cterm=NONE ctermbg=17 gui=NONE guibg=#212121
+    autocmd ColorScheme nord highlight Visual cterm=NONE ctermbg=17  gui=NONE guibg=#212121
+    autocmd ColorScheme nord highlight SignColumn guibg=#212121
+  augroup END
+
+  let g:nord_cursor_line_number_background = 1
+  let g:nord_italic_comments=1
+  let g:nord_italic =1
+  let g:nord_bold = 1
+  let g:nord_underline = 1
+
+  colorscheme nord
+
+  " colorscheme base16-tomorrow-night " silence errors so we don't bomb out
   " colorscheme Tomorrow-Night " silence errors so we don't bomb out
+
+
+
+
+
+
+
+
   set guifont=Operator\ Mono\ Book:h18
 
   " Hide EOB lines ~
-  hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
+  " hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
 
   " Italics or Operator font
   highlight Comment gui=italic
@@ -207,7 +233,8 @@
 "}}}
 
 " LightLine {{{
-    let g:lightline = {'colorscheme': 'Tomorrow_Night'}
+    " let g:lightline = {'colorscheme': 'Tomorrow_Night'}
+    let g:lightline = {'colorscheme': 'nord'}
 
     let g:lightline.enable = {
             \ 'statusline': 1,
@@ -425,7 +452,7 @@
 
 
 " After Object {{{
-  autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+  " autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
 "}}}
 
 
@@ -602,9 +629,53 @@ let g:SignatureMap = {
 "}}}
 
 autocmd FileType terraform setlocal commentstring=#%s
-
-
 autocmd FileType python BracelessEnable +indent +fold
+
+
+" Goyo {{{
+let g:goyo_width = "50%"
+let g:goyo_height= "50%"
+
+function! s:goyo_enter()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  endif
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  Limelight
+
+
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+
+endfunction
+
+function! s:goyo_leave()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status on
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  endif
+  set showmode
+  set showcmd
+  set scrolloff=5
+  Limelight!
+
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+" }}}
 
 
 " Local config {{{

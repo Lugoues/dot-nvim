@@ -2,7 +2,7 @@
 #
 # lugoues/nvim ellipsis package
 
-requires=(nvim pyenv)
+requires=(nvim)
 
 python2_req="neovim"
 python3_req="neovim"
@@ -27,6 +27,13 @@ _check_requires() {
 }
 
 _setup_python() {
+  python_requires=(python pip pyenv)
+  for i in "${python_requires[@]}"; do
+    if ! utils.cmd_exists $i; then
+      echo "$(tput setaf 2)Python dependencies missing.. Skipping python setup$(tput sgr0)"
+      return
+    fi
+  done
 
   echo "Setting up python"
   eval "$(pyenv init -)"
@@ -72,7 +79,7 @@ _setup_ruby() {
 pkg.install() {
   _check_requires || exit $?
   _setup_python
-  _setup_ruby
+  # _setup_ruby
 }
 
 pkg.link() {
@@ -109,3 +116,4 @@ pkg.pull() {
     # msg.bold "$PKG_NAME up-to-date."
   # fi
 }
+
