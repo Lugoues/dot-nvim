@@ -2,35 +2,49 @@
   {: lazy-spec} :macros
   {: g!
    : color!
+   : exec!
    : map! } :hibiscus.vim)
 
-(lazy-spec :nvim-telescope/telescope.nvim
- {
-;;  :opts {:defaults
-;;          {:vimgrep_arguments ["rg" "--color=never" "--no-heading"
-;;                             "--with-filename" "--line-number" "--column"
-;;                             "--smart-case" "--hidden" "--follow"
-;;                             "-g" "!.git/"]}}
-   :dependencies [:nvim-lua/popup.nvim
-                  :nvim-lua/plenary.nvim
-                  :nvim-telescope/telescope-fzf-native.nvim]
-   :config (λ []
-            (map! [n] :<leader>ff "Telescope find_files hidden=true")
-            (map! [n] :<leader>f- "Telescope file_browser")
-            (map! [n] :<leader>fg "Telescope live_grep")
-            (map! [n] :<leader>* "Telescope grep_string")
-            (map! [n] :<leader>fb "Telescope buffers")
-            (map! [n] :<leader>fH "Telescope help_tags")
-            (map! [n] :<leader>fm "Telescope keymaps")
-            (map! [n] :<leader>fM "Telescope marks")
-            (map! [n] :<leader>fh "Telescope oldfiles")
-            (map! [n] :<leader>ft "Telescope filetypes")
-            (map! [n] :<leader>fc "Telescope commands")
-            (map! [n] :<leader>fC "Telescope command_history")
-            (map! [n] :<leader>fq "Telescope quickfix")
-            (map! [n] :<leader>fl "Telescope loclist")
-            (map! [n] :<leader>fsa "Telescope lsp_code_actions")
-            (map! [n] :<leader>fsi "Telescope lsp_implementations")
-            (map! [n] :<leader>fsr "Telescope lsp_references")
-            (map! [n] :<leader>fsS "Telescope lsp_document_symbols")
-            (map! [n] :<leader>fss "Telescope lsp_workspace_symbols"))})
+[
+ ; (lazy-spec :nvim-telescope/telescope-fzf-native.nvim
+ ;            {:priority 999
+ ;             :build "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+ ;             :dependencies [:nvim-telescope/telescope.nvim]
+ ;             :opts {}
+ ;             :config (λ [_ opts]
+ ;                        (let [tlscp (require :telescope)]
+ ;                             (tlscp.setup opts)
+ ;                             (tlscp.load_extension "fzf")))})
+
+ (lazy-spec :debugloop/telescope-undo.nvim
+            {:dependencies [:nvim-telescope/telescope.nvim]
+             :opts {:extensions {:undo {:use_delta true
+                                        :diff_context_lines 10
+                                        :side_by_side true
+                                        :layout_strategy :vertical
+                                        :layout_config {:preview_height 0.8}}}}
+             :config (λ [_ opts]
+                        (let [tlscp (require :telescope)]
+                             (tlscp.setup opts)
+                             (tlscp.load_extension "undo")))})
+
+
+ (lazy-spec :nvim-telescope/telescope.nvim
+            {:tag "0.1.6"
+             :dependencies [:nvim-lua/popup.nvim
+                            :nvim-lua/plenary.nvim
+                            :nvim-tree/nvim-web-devicons]})]
+             ; :config (λ [_ opts])})]
+                      ; (let [tlscp (require :telescope)
+                      ;       oxocarbon (require :oxocarbon)]
+                      ;   (tlscp.setup opts)
+                      ;   (exec!
+                      ;      [hi! TelescopeBorder guifg=oxocarbon.blend guibg=oxocarbon.blend]
+                      ;      [hi! TelescopePromptBorder guifg=oxocarbon.base02 guibg=oxocarbon.base02]
+                      ;      [hi! TelescopePromptNormal guifg=oxocarbon.base05 guibg=oxocarbon.base02]
+                      ;      [hi! TelescopePromptPrefix guifg=oxocarbon.base08 guibg=oxocarbon.base02]
+                      ;      [hi! TelescopeNormal guifg=oxocarbon.none guibg=oxocarbon.blend]
+                      ;      [hi! TelescopePreviewTitle guifg=oxocarbon.base02 guibg=oxocarbon.base12]
+                      ;      [hi! TelescopePromptTitle guifg=oxocarbon.base02 guibg=oxocarbon.base11]
+                      ;      [hi! TelescopeResultsTitle guifg=oxocarbon.blend guibg=oxocarbon.blend])))})]
+                      ;

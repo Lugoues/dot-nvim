@@ -2,7 +2,7 @@
 
 ; enable clipboard for macos or X11
 (when (= (vim.fn.executable :pbcopy) 1)
-  (set! clipboard :unnamedplus)
+    (set! clipboard :unnamedplus)
 )
 
 ;; Encoding

@@ -27,28 +27,28 @@ pkg.link() {
   fs.link_rfile "$PKG_PATH/nvim" "$ELLIPSIS_HOME/.config/nvim"
 
   # Install Plugins
-  # echo "Installing nvim Plugins..."
-  # nvim +PlugInstall +qall --headless
-  # nvim +PlugClean! +qall --headless
+  echo "Installing nvim Plugins..."
+  nvim --headless "+Lazy! install" +qall
 }
 
 pkg.unlink() {
   # Remove link in ~/.config
   rm -f "$ELLIPSIS_HOME/.config/nvim"
+  rm -Rf "$HOME/.local/share/nvim"
 
   # Remove links in the home folder
   hooks.unlink
 }
 
-# pkg.pull() {
-#   # if [ "$(git.is_behind)" ]; then
-#   # git.pull-rebase
+pkg.pull() {
+  if [ "$(git.is_behind)" ]; then
+  git.pull-rebase
 
-#   # Install Plugins
-#   #  echo "Installing nvim Plugins..."
-#   # nvim +PlugInstall +UpdateRemotePlugins +qall --headless
+  # Install Plugins
+  echo "Installing nvim Plugins..."
+  nvim --headless "+Lazy! install" +qall
 
-#   # else
-#   # msg.bold "$PKG_NAME up-to-date."
-#   # fi
-# }
+  else
+  msg.bold "$PKG_NAME up-to-date."
+  fi
+}
